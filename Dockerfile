@@ -10,5 +10,6 @@ COPY ./scripts/ /app/scripts/
 
 # prepare cron folders, and copy the scripts
 COPY ./cron/ /etc/periodic/
+RUN chmod -R a+x /app/scripts
 RUN /app/scripts/cron-setup.sh
 RUN chmod -R a+x /etc/periodic
