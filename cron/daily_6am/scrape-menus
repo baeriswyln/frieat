@@ -1,4 +1,4 @@
 #!/bin/sh
-wget -O /usr/local/apache2/htdocs/data/www3.unifr.ch/mensa/fr/index.html https://www3.unifr.ch/mensa/fr/ >/dev/null 2>&1
+wget -O /usr/local/apache2/htdocs/data/www.unifr.ch/mensa/fr/index.html https://www.unifr.ch/mensa/fr/ >/dev/null 2>&1
 wget -O /usr/local/apache2/htdocs/data/heia-fr.sv-restaurant.ch/fr/plan-des-menus/index.html https://heia-fr.sv-restaurant.ch/fr/plan-des-menus/ >/dev/null 2>&1
 wget -O /usr/local/apache2/htdocs/data/mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/index.html https://mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/ >/dev/null 2>&1

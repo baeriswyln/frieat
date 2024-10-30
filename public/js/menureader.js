@@ -6,7 +6,7 @@ const Menureader = function () {
     let mozaikData = "";
 
     let _allMenus = function () {
-        _website("/data/www3.unifr.ch/mensa/fr/index.html", _callbackUniFR);
+        _website("/data/www.unifr.ch/mensa/fr/index.html", _callbackUniFR);
         _website("/data/heia-fr.sv-restaurant.ch/fr/plan-des-menus/index.html", _callbackHEFR);
         _website("/data/mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/index.html", _callbackMozaik);
     }
