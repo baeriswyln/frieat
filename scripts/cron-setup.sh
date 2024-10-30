@@ -1,0 +1,1 @@
+echo "5 6 * * * run-parts /etc/periodic/daily_6am" >> /etc/crontabs/root
