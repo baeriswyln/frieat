@@ -1,0 +1,57 @@
+a {
+    color: #8c6d7c;
+}
+
+a:hover {
+    color: #6d5360;
+}
+
+main {
+    position: relative;
+}
+
+main .container {
+    position: relative;
+
+}
+
+.background {
+    background-image: url("/res/food-background-1.jpg");
+    background-repeat: repeat;
+    opacity: .2;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}
+
+.list-group-flush .list-group-item:first-child {
+    border-top-width: 1px;
+}
+
+.label-info {
+    display: none;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.4) 0 0 20px;
+    border: none;
+    border-radius: 0;
+}
+
+footer {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+    background-color: white;
+}
+
+#footer-copyright {
+    background-color: #8c6d7c;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+}
+
+#footer-copyright a {
+    color: white;
+}

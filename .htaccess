@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^typo3conf/(.*)$ https://frieat.baeriswyl.dev/data/heia-fr.sv-restaurant.ch/typo3conf/$1 [R=301,L]
+RewriteRule ^fileadmin/(.*)$ https://frieat.baeriswyl.dev/data/heia-fr.sv-restaurant.ch/fileadmin/$1 [R=301,L]
+RewriteRule ^mensa/(.*)$ https://frieat.baeriswyl.dev/data/www3.unifr.ch/mensa/$1 [R=301,L]
