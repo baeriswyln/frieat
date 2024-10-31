@@ -14,5 +14,4 @@ COPY ./cron/ /etc/periodic/
 RUN /app/scripts/cron-setup.sh
 RUN chmod -R a+x /etc/periodic
 
-#ENTRYPOINT ["/app/scripts/startup.sh"]
 CMD ["/bin/sh", "-c", "/app/scripts/startup.sh;httpd-foreground"]
