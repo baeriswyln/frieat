@@ -1,13 +1,18 @@
 const Menureader = function () {
 
+    const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
     let currentIndex = 0;
     let unifrData = "";
-    let hefrData = "";
+    let hefrData = {};
     let mozaikData = "";
 
     let _allMenus = function () {
+        weekdays.forEach(weekday => {
+            _websiteDaily(`/data/heia/${weekday}.html`, _callbackHEFR, weekday);
+        })
+
         _website("/data/www.unifr.ch/mensa/fr/index.html", _callbackUniFR);
-        _website("/data/heia-fr.sv-restaurant.ch/fr/plan-des-menus/index.html", _callbackHEFR);
         _website("/data/mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/index.html", _callbackMozaik);
     }
 
@@ -78,6 +83,50 @@ const Menureader = function () {
         $(id).append(code);
     }
 
+    let _displaySVDailyData = function (data, id) {
+        if (hefrData[weekdays[currentIndex]]) {
+
+            // start new container
+            let code = '<div class="row">';
+
+            data = DOMPurify.sanitize(hefrData[weekdays[currentIndex]], {
+                CUSTOM_ELEMENT_HANDLING: {
+                    tagNameCheck: /^(mat|app|td)-.*/,
+                }
+            });
+
+
+            // create entries for the menus that are available
+            $('.menu-wrapper app-category', data).each(function () {
+                code += '<div class="col-lg-4 col-md-6"><div class="card text-center mb-3">\n' +
+                    '  <div class="card-body">\n' +
+                    '    <h5 class="card-title">' + $('h3', this).html() + '</h5>\n';
+
+                if ($('.price', this).html() !== undefined) code += '    <p class="card-text">' + $('.price', this).html() + '</p>\n';
+
+                code += '  </div>\n' +
+                    '  <ul class="list-group list-group-flush">\n' +
+                    '    <li class="list-group-item">' + $('.name-column', this).html() + '</li>';
+
+                if ($('.allergen-column', this).html() !== "" && $('.allergen-column', this).html() !== undefined)
+                    code += '    <li class="list-group-item">' + $('.allergen-column', this).html() + '</li>';
+
+                code += '  </ul>\n' +
+                    '</div></div>';
+            });
+
+
+            code += '</div></div>';
+            $(id).html(code);
+
+        } else {
+            let code = '<div class="row">';
+            code += '<div class="col mb-3 text-center"><h3>Not available</h3></div>';
+            code += '</div>'
+            $(id).html(code)
+        }
+    }
+
     let _displayUniFR = function () {
         let sites = $('.col-md-4', unifrData[currentIndex]);
         let code = '<div class="row">';
@@ -137,12 +186,12 @@ const Menureader = function () {
         _displayUniFR();
     }
 
-    let _callbackHEFR = function (data, index) {
-        if (data !== "") hefrData = data;
+    let _callbackHEFR = function (data, index, weekday) {
+        if (data !== "") hefrData[weekday] = data;
         currentIndex = (index > -1) ? index : _currentDat();
 
         _activateButton(currentIndex);
-        _displaySV(hefrData, '#hefr-content');
+        _displaySVDailyData(hefrData, '#hefr-content', weekday);
     }
 
     let _callbackMozaik = function (data, index) {
@@ -152,6 +201,15 @@ const Menureader = function () {
         _activateButton(currentIndex);
 
         _displaySV(mozaikData, '#mozaik-content');
+    }
+
+    let _websiteDaily = function (url, successEvent, weekday) {
+        $.ajax({
+            url: url,
+            success: function (data, textStats, jqXHR) {
+                successEvent(data, textStats, weekday)
+            },
+        });
     }
 
     let _website = function (url, successEvent) {

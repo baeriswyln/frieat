@@ -35,6 +35,11 @@ main .container {
     display: none;
 }
 
+app-product-custom-tag img {
+    width: 2rem;
+    margin: 0 .2rem;
+}
+
 .card {
     box-shadow: rgba(0, 0, 0, 0.4) 0 0 20px;
     border: none;
