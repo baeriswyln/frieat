@@ -60,24 +60,24 @@ const Menureader = function () {
             code += '<div class="col mb-3 text-center"><h3>Not available</h3></div>';
 
         // create entries for the menus that are available
-        $('#menu-plan-tab' + (currentIndex + 1 - (5 - tabs)) + ' .menu-item', data).each(function () {
+        for(const menu of $('#menu-plan-tab' + (currentIndex + 1 - (5 - tabs)) + ' .menu-item', data)) {
             code += '<div class="col-lg-4 col-md-6"><div class="card text-center mb-3">\n' +
                 '  <div class="card-body">\n' +
-                '    <h5 class="card-title">' + $('.menu-title', this).html() + '</h5>\n';
+                '    <h5 class="card-title">' + $('.menu-title', menu).html() + '</h5>\n';
 
-            if ($('.price', this).html() !== undefined) code += '    <p class="card-text">' + $('.price', this).html() + '</p>\n';
+            if ($('.price', menu).html() !== undefined) code += '    <p class="card-text">' + $('.price', menu).html() + '</p>\n';
 
             code += '  </div>\n' +
                 '  <ul class="list-group list-group-flush">\n' +
-                '    <li class="list-group-item">' + $('.menu-description', this).html() + '</li>';
+                '    <li class="list-group-item">' + $('.menu-description', menu).html() + '</li>';
 
-            if ($('.menu-labels', this).html() !== "" && $('.menu-labels', this).html() !== undefined)
-                code += '    <li class="list-group-item">' + $('.menu-labels', this).html() + '</li>';
-            if ($('.menu-provenance', this).html() !== "")
-                code += '    <li class="list-group-item">' + $('.menu-provenance', this).html() + '</li>';
+            if ($('.menu-labels', menu).html() !== "" && $('.menu-labels', menu).html() !== undefined)
+                code += '    <li class="list-group-item">' + $('.menu-labels', menu).html() + '</li>';
+            if ($('.menu-provenance', menu).html() !== "")
+                code += '    <li class="list-group-item">' + $('.menu-provenance', menu).html() + '</li>';
             code += '  </ul>\n' +
                 '</div></div>';
-        });
+        }
 
         code += '</div></div>';
         $(id).append(code);
@@ -97,23 +97,23 @@ const Menureader = function () {
 
 
             // create entries for the menus that are available
-            $('.menu-wrapper app-category', data).each(function () {
+            for(const menu of $('.menu-wrapper app-category', data)) {
                 code += '<div class="col-lg-4 col-md-6"><div class="card text-center mb-3">\n' +
                     '  <div class="card-body">\n' +
-                    '    <h5 class="card-title">' + $('h3', this).html() + '</h5>\n';
+                    '    <h5 class="card-title">' + $('h3', menu).html() + '</h5>\n';
 
-                if ($('.price', this).html() !== undefined) code += '    <p class="card-text">' + $('.price', this).html() + '</p>\n';
+                if ($('.price', menu).html() !== undefined) code += '    <p class="card-text">' + $('.price', menu).html() + '</p>\n';
 
                 code += '  </div>\n' +
                     '  <ul class="list-group list-group-flush">\n' +
-                    '    <li class="list-group-item">' + $('.name-column', this).html() + '</li>';
+                    '    <li class="list-group-item">' + $('.name-column', menu).html() + '</li>';
 
-                if ($('.allergen-column', this).html() !== "" && $('.allergen-column', this).html() !== undefined)
-                    code += '    <li class="list-group-item">' + $('.allergen-column', this).html() + '</li>';
+                if ($('.allergen-column', menu).html() !== "" && $('.allergen-column', menu).html() !== undefined)
+                    code += '    <li class="list-group-item">' + $('.allergen-column', menu).html() + '</li>';
 
                 code += '  </ul>\n' +
                     '</div></div>';
-            });
+            }
 
 
             code += '</div></div>';
