@@ -1,6 +1,7 @@
 FROM httpd:2.4-alpine
 
 RUN apk update && apk add --no-cache wget
+RUN apk add --update coreutils && rm -rf /var/cache/apk/*
 
 COPY ./public/ /usr/local/apache2/htdocs/
 COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
