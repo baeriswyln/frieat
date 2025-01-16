@@ -26,6 +26,6 @@ echo "$domains" | while IFS=" " read -r url folder; do
         weekday_date=$(date -d "$current_date + $offset days" +%Y-%m-%d)
         weekday_name=$(date -d "$current_date + $offset days" +%A)
 
-        wget -O $base_folder/$folder/$weekday_name.html $PLAYWRIGHT/html?url=$url/date/$weekday_date\&waitUntil=load\&selector=.menu-wrapper >/dev/null 2>&1
+        wget -O $base_folder/$folder/$weekday_name.html $PLAYWRIGHT/html?url=$url/date/$weekday_date\&waitUntil=load\&selector=app-category >/dev/null 2>&1
     done
 done
