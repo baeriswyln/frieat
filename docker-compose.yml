@@ -1,0 +1,19 @@
+services:
+  playwright:
+    image: baeriswyln/playwright-renderer
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "http://playwright:3000"]
+      interval: 1s
+      retries: 10
+
+  frieat:
+    build: .
+    environment:
+      PLAYWRIGHT: http://playwright:3000
+    ports:
+      - "8080:80"
+    depends_on:
+      playwright:
+        condition: service_healthy
