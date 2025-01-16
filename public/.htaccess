@@ -1,5 +1,5 @@
 Options +FollowSymLinks
 RewriteEngine On
-RewriteRule ^typo3conf/(.*)$ /data/mozaik-fr.sv-restaurant.ch/typo3conf/$1 [R=301,L]
-RewriteRule ^fileadmin/(.*)$ /data/mozaik-fr.sv-restaurant.ch/fileadmin/$1 [R=301,L]
-RewriteRule ^mensa/(.*)$ /data/www.unifr.ch/mensa/$1 [R=301,L]
+RewriteRule ^typo3conf/(.*)$ https://mozaik-fr.sv-restaurant.ch/typo3conf/$1 [R=301,L]
+RewriteRule ^fileadmin/(.*)$ https://mozaik-fr.sv-restaurant.ch/fileadmin/$1 [R=301,L]
+RewriteRule ^mensa/(.*)$ https://www.unifr.ch/mensa/$1 [R=301,L]
