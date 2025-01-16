@@ -1,4 +1,3 @@
 #!/bin/sh
 wget -r -k -N -np -P /usr/local/apache2/htdocs/data/ https://www.unifr.ch/mensa/ >/dev/null 2>&1
-wget -r -k -N -P /usr/local/apache2/htdocs/data/ https://heia-fr.sv-restaurant.ch/fr/plan-des-menus/ >/dev/null 2>&1
 wget -r -k -N -P /usr/local/apache2/htdocs/data/ https://mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/ >/dev/null 2>&1
