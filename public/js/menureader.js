@@ -83,13 +83,13 @@ const Menureader = function () {
         $(id).append(code);
     }
 
-    let _displaySVDailyData = function (data, id) {
+    let _displaySVDailyData = function (rawdata, id) {
         if (hefrData[weekdays[currentIndex]]) {
 
             // start new container
             let code = '<div class="row">';
 
-            data = DOMPurify.sanitize(hefrData[weekdays[currentIndex]], {
+            let data = DOMPurify.sanitize(hefrData[weekdays[currentIndex]], {
                 CUSTOM_ELEMENT_HANDLING: {
                     tagNameCheck: /^(mat|app|td)-.*/,
                 }
