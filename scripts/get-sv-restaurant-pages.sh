@@ -3,7 +3,7 @@
 # Array of tuples. Every line is an entry in the array. Each line has two values, separated by a space.
 # First value: Base URL pointing to the restaurant's page. Second value: folder name where to store the data.
 domains="https://web.sv-restaurant.ch/menu/HEIA,%20Fribourg/Repas%20chauds heia
-https://web.sv-restaurant.ch/menu/BKW%20Galgenfeld,%20Bern/Mittagsmenu%20Galgenfeld bkw"
+https://web.sv-restaurant.ch/menu/HEdS,%20Moza%C3%AFk,%20Fribourg/Menu%20de%20midi mozaik"
 
 base_folder="/usr/local/apache2/htdocs/data"
 
