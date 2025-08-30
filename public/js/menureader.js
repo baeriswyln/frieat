@@ -106,7 +106,7 @@ const Menureader = function () {
 
                 code += '  </div>\n' +
                     '  <ul class="list-group list-group-flush">\n' +
-                    '    <li class="list-group-item">' + $('.name-column', menu).html() + '</li>';
+                    '    <li class="list-group-item"><h5>' + $('.name-column button span', menu).html() + '</h5>' + $('.product-teaser', menu).html() + '</li>';
 
                 if ($('.allergen-column', menu).html() !== "" && $('.allergen-column', menu).html() !== undefined)
                     code += '    <li class="list-group-item">' + $('.allergen-column', menu).html() + '</li>';
@@ -128,7 +128,7 @@ const Menureader = function () {
     }
 
     let _displayUniFR = function () {
-        let sites = $('.col-md-4', unifrData[currentIndex]);
+        let sites = $('> div', unifrData[currentIndex]);
         let code = '<div class="row">';
 
         for (let i = 0; i < sites.length; i++) {
