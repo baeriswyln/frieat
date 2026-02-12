@@ -14,6 +14,11 @@ services:
       PLAYWRIGHT: http://playwright:3000
     ports:
       - "8080:80"
+    develop:
+      watch:
+        - action: sync
+          path: ./public
+          target: /usr/local/apache2/htdocs
     depends_on:
       playwright:
         condition: service_healthy

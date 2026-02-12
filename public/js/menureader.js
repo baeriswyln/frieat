@@ -5,15 +5,15 @@ const Menureader = function () {
     let currentIndex = 0;
     let unifrData = "";
     let hefrData = {};
-    let mozaikData = "";
+    let mozaikData = {};
 
     let _allMenus = function () {
         weekdays.forEach(weekday => {
             _websiteDaily(`/data/heia/${weekday}.html`, _callbackHEFR, weekday);
+            _websiteDaily(`/data/mozaik/${weekday}.html`, _callbackMozaik, weekday);
         })
 
         _website("/data/www.unifr.ch/mensa/fr/index.html", _callbackUniFR);
-        _website("/data/mozaik-fr.sv-restaurant.ch/fr/plan-des-menus/index.html", _callbackMozaik);
     }
 
     let _setWeekday = function (index) {
@@ -84,12 +84,12 @@ const Menureader = function () {
     }
 
     let _displaySVDailyData = function (rawdata, id) {
-        if (hefrData[weekdays[currentIndex]]) {
+        if (rawdata[weekdays[currentIndex]]) {
 
             // start new container
             let code = '<div class="row">';
 
-            let data = DOMPurify.sanitize(hefrData[weekdays[currentIndex]], {
+            let data = DOMPurify.sanitize(rawdata[weekdays[currentIndex]], {
                 CUSTOM_ELEMENT_HANDLING: {
                     tagNameCheck: /^(mat|app|td)-.*/,
                 }
@@ -106,7 +106,7 @@ const Menureader = function () {
 
                 code += '  </div>\n' +
                     '  <ul class="list-group list-group-flush">\n' +
-                    '    <li class="list-group-item">' + $('.name-column', menu).html() + '</li>';
+                    '    <li class="list-group-item"><h5>' + $('.name-column button span', menu).html() + '</h5>' + $('.product-teaser', menu).html() + '</li>';
 
                 if ($('.allergen-column', menu).html() !== "" && $('.allergen-column', menu).html() !== undefined)
                     code += '    <li class="list-group-item">' + $('.allergen-column', menu).html() + '</li>';
@@ -128,7 +128,7 @@ const Menureader = function () {
     }
 
     let _displayUniFR = function () {
-        let sites = $('.col-md-4', unifrData[currentIndex]);
+        let sites = $('> div', unifrData[currentIndex]);
         let code = '<div class="row">';
 
         for (let i = 0; i < sites.length; i++) {
@@ -194,13 +194,12 @@ const Menureader = function () {
         _displaySVDailyData(hefrData, '#hefr-content', weekday);
     }
 
-    let _callbackMozaik = function (data, index) {
-        if (data !== "") mozaikData = data;
+    let _callbackMozaik = function (data, index, weekday) {
+        if (data !== "") mozaikData[weekday] = data;
         currentIndex = (index > -1) ? index : _currentDat();
 
         _activateButton(currentIndex);
-
-        _displaySV(mozaikData, '#mozaik-content');
+        _displaySVDailyData(mozaikData, '#mozaik-content', weekday);
     }
 
     let _websiteDaily = function (url, successEvent, weekday) {
